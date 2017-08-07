@@ -34,7 +34,6 @@ etc.
 ### Merkel Chain / Blockchain
 
 ![Merkel Chain](/images/merkel_chain.png "Merkel Chain")
-```
 
 Where root[i+1].hash = hash(concatenate(root[i].hash,block[i].hash))
 etc.
