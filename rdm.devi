@@ -1,0 +1,194 @@
+
+# Distributed Ledger Technologies / Blockchain : Software Design Patterns
+
+First some terminology:
+
+## Principles
+
+### Atomicity
+
+### Asynchrony
+
+### Consensus
+
+### Reliability
+
+### Synchronicity
+
+### Provenance
+
+
+## Data Patterns
+
+### Merkel Tree
+
+```uml
+[<package>Merkel Tree |
+	[node 1.1.1 | hash]->[node 1.1| hash]
+	[node 1.1.2| hash]->[node 1.1]
+	[node 1.2.1| hash]->[node 1.2| hash]
+	[node 1.2.2| hash]->[node 1.2]
+	[node 1.2]->[node 1| hash]
+	[node 1.1]->[node 1]
+
+]
+
+```
+
+Where node[1.1].hash = hash(concatenate(node[1.1.1].hash,node[1.1.2].hash))
+etc.
+
+#### Applications
++ Git
++ Modern File Systems
+
+### Merkel Chain / Blockchain
+
+```uml
+
+[<package>Merkel Chain |
+	[...]->[root n | hash]
+	[block n | hash]->[root n]
+	[root n]->[root n+1 | hash]
+	[block n+1 | hash]->[root n+1]
+	[root n+1]->[root n+2 | hash]
+	[block n+2 | hash]->[root n+2]
+	[root n+2]->[....]
+
+]
+
+```
+
+Where root[i+1].hash = hash(concatenate(root[i].hash,block[i].hash))
+etc.
+
+#### Applications
++ Blockchain
+
+### Block
+
+```uml
+[<package>Block |
+
+[Block |
+	header: BlockHeader
+	transactions: CountableList(Transaction)
+	uncles: CountableList(BlockHeader)
+	db = None
+    	bloom_filter = None
+		transaction_class = FrontierTransaction
+		|
+		__init__(header, db, transactions=None, uncles=None)
+		validate_gas_limit()
+		validate()
+		validate_uncle(uncle)
+		number()
+		hash()
+		get_parent_header()
+		get_transaction_class(cls)
+		get_cumulative_gas_used()
+		receipts()
+		from_header(cls, header, db)
+		add_transaction(transaction, computation)
+		add_uncle(uncle)
+		mine(**kwargs)
+	
+
+]
+
+[Block]transactions o-[Transaction]
+[Block]header o-[BlockHeader]
+
+[rlp.Serializable]<:-[Block]
+[rlp.Serializable]<:-[BlockHeader]
+        [BlockHeader |
+            fields = (
+            ('parent_hash', hash32),
+            ('uncles_hash', hash32),
+            ('coinbase', address),
+            ('state_root', trie_root),
+            ('transaction_root', trie_root),
+            ('receipt_root', trie_root),
+            ('bloom', int256),
+            ('difficulty', big_endian_int),
+            ('block_number', big_endian_int),
+            ('gas_limit', big_endian_int),
+            ('gas_used', big_endian_int),
+            ('timestamp', big_endian_int),
+            ('extra_data', binary),
+            ('mix_hash', binary),
+            ('nonce', Binary(8, allow_empty=True)))
+            |
+            __init__(difficulty, block_number, gas_limit, 
+				timestamp=None, coinbase=ZERO_ADDRESS, parent_hash=ZERO_HASH32, 
+				uncles_hash=EMPTY_UNCLE_HASH, state_root=BLANK_ROOT_HASH, transaction_root=BLANK_ROOT_HASH, 
+				receipt_root=BLANK_ROOT_HASH, bloom=0, gas_used=0, 
+				extra_data=b'', mix_hash=ZERO_HASH32, nonce=GENESIS_NONCE)
+            hash()
+            mining_hash()
+            hex_hash()
+            from_parent(cls, parent, gas_limit, difficulty, coinbase=ZERO_ADDRESS, 
+			timestamp=None, nonce=None, extra_data=None)
+        ]
+]
+		
+```
+
+
+#### Applications
++ Blockchain
+
+### Transaction
+
+```uml
+[<package>Transaction |
+[Transaction |
+	nonce: g_endian_int
+	gas_price: big_endian_int
+	gas: big_endian_int
+	to: address
+	value: big_endian_int
+	data: binary
+	v: big_endian_int
+	r: big_endian_int
+	s: big_endian_int
+		|
+		validate()
+		check_signature_validity()
+		get_sender()
+		get_intrensic_gas()
+		as_unsigned_transaction()
+		create_unsigned_transaction(cls, nonce, gas_price, gas, to, value, data)
+	]
+
+]
+```
+
+#### Applications
++ Blockchain
+
+## Behavior Patterns
+
+### Singleton
+
+One single instance of:
++ data
++ behavior
++ events
+
+### Contract
+
+### Oracle
+
+### Observer/Judge
+
+## Composite Patterns
+
+### Twin Contract
+
+
+
+
+```uml
+http://orobo.go.ro:4500/info.txt
+```
