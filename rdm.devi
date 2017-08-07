@@ -1,21 +1,35 @@
-
 # Distributed Ledger Technologies / Blockchain : Software Design Patterns
 
-First some terminology:
 
 ## Principles
 
+### Immutability
+
+Blockchains are immutable.
+
 ### Atomicity
+
+Entire operation runs or none of it does.
 
 ### Asynchrony
 
+Blockchains are designed to run on any number of computers/nodes.
+
 ### Consensus
+
+Uses algorithms to reach Distributed Consensus.
 
 ### Reliability
 
-### Synchronicity
+Algorithms assume that network is not reliable.
+
+### Synchrony
+
+No two operations can interfere with each other.
 
 ### Provenance
+
+All method calls can be inspected to determine caller address.
 
 
 ## Data Patterns
@@ -42,11 +56,11 @@ etc.
 + Git
 + Modern File Systems
 
-### Merkel Chain / Blockchain
+### Merkel Trie / Blockchain
 
 ```uml
 
-[<package>Merkel Chain |
+[<package>Merkel Trie |
 	[...]->[root n | hash]
 	[block n | hash]->[root n]
 	[root n]->[root n+1 | hash]
