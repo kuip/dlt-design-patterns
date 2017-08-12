@@ -155,7 +155,7 @@ etc.
 
 ```uml
 [<package>Transaction |
-[Transaction |
+[Block |transactions|]o-transactions[Transaction |
 	nonce: g_endian_int
 	gas_price: big_endian_int
 	gas: big_endian_int
@@ -185,6 +185,22 @@ etc.
 
 ### Singleton
 
+```uml
+
+[<package> Singleton |
+	[<state>Network |
+		blocks
+		
+	]-->[Singleton/Virtual Machine |
+		interpreter
+		state
+	]
+
+]
+
+
+```
+
 One single instance of:
 + data
 + behavior
@@ -193,11 +209,20 @@ One single instance of:
 #### Applications
 + Blockchain
 
-### Contract
+### (Smart) Contract
 
 ```uml
 
 [<package> Contract |
+	[<state>Network |
+		blocks
+	]o-blocks[Block]
+	[Block]o-contracts[Contract |
+	
+	owner: Address
+	|
+	Contract() // constructor
+	]
 	
 
 ]
@@ -205,13 +230,95 @@ One single instance of:
 
 ```
 
+#### Mortal Contract
+
+By default the contracts are immortal. They could trap funds if they cannot be stopped from operation.
+
+
+```uml
+
+[<package> Mortal Contract |
+	
+	[<abstract>Contract]<:-[<abstract>Mortal |
+		owner: Address
+		|
+		Mortal()
+		Kill()
+	]
+	[Mortal]<:-[ConcreteMortal||]
+]
+
+
+```
+
+### Contract Interoperativity
+
+```uml
+
+[<package> Contract Interoperativity|
+	[<abstract>ERC20Interface |
+		|
+		totalSupply() constant returns (uint totalSupply)
+		balanceOf(address _owner) constant returns (uint balance)
+		transfer(address _to, uint _value) returns (bool success)
+		transferFrom(address _from, address _to, uint _value) returns (bool success)
+		approve(address _spender, uint _value) returns (bool success)
+		allowance(address _owner, address _spender) constant returns (uint remaining)
+		|
+ 		Transfer(address indexed _from, address indexed _to, uint _value)
+		Approval(address indexed _owner, address indexed _spender, uint _value)
+		
+	]
+	[ERC20Interface]<:-[Contract1 ||]
+	[ERC20Interface]<:-[Contract2 ||]
+	
+	[ERC20Interface]<:-[<abstract>HumanStandardToken |
+		+name: string
+		+decimals: uint8
+		+symbol: string
+		+version = 'H0.1'
+	]
+	
+	[HumanStandardToken]<:-[Contract3 ||]
+	
+
+]
+```
+Contract1, 2, 3 are interoperable
+
 ### Oracle
+
+
 
 ### Observer/Judge
 
 ## Composite Patterns
 
-### Twin Contract
+### Twin Contracts
+
+Twin smart contracts usually are born and die together. Also the transcations they initiate are born in synchronicity and atomically in mirror on their respective newtorks.
+
+```uml
+[<package>Twin Contracts |
+	
+	[<abstract>TwinInterface1|twins: CountableList(Contract)|]
+	[<state>NetworkA]-->[ContractTwin1A|twins]
+	[<state>NetworkB]-->[ContractTwin1B|twins]
+	[TwinInterface1]<:-[ContractTwin1A]
+	[TwinInterface1]<:-[ContractTwin1B]
+	[ContractTwin1B]--knows[ContractTwin1A]
+
+
+]
+
+
+```
+
+### Contract Factory
+
+### Contract of Contracts
+
+A contract that implements contract factory for any number of contracts.
 
 
 ## Terminology (from Ethereum)

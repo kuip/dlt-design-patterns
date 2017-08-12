@@ -1,6 +1,4 @@
-
 # Distributed Ledger Technologies / Blockchain : Software Design Patterns
-
 
 
 ## Principles
@@ -40,6 +38,7 @@ All method calls can be inspected to determine caller address.
 
 ![Merkel Tree](/images/merkel_tree.png "Merkel Tree")
 
+
 Where node[1.1].hash = hash(concatenate(node[1.1.1].hash,node[1.1.2].hash))
 etc.
 
@@ -76,20 +75,52 @@ etc.
 
 ### Singleton
 
+![Singleton](/images/singleton.png "Singleton")
+
 One single instance of:
 + data
 + behavior
 + events
 
-### Contract
+#### Applications
++ Blockchain
+
+### (Smart) Contract
+
+![Contract](/images/contract.png "Contract")
+
+#### Mortal Contract
+
+By default the contracts are immortal. They could trap funds if they cannot be stopped from operation.
+
+
+![Mortal Contract](/images/mortal.png "Mortal Contract")
+
+### Contract Interoperativity
+
+![ERC20](/images/erc20.png "ERC20")
+Contract1, 2, 3 are interoperable
 
 ### Oracle
+
+
 
 ### Observer/Judge
 
 ## Composite Patterns
 
-### Twin Contract
+### Twin Contracts
+
+Twin smart contracts usually are born and die together. Also the transcations they initiate are born in synchronicity and atomically in mirror on their respective newtorks.
+
+![Twin Contracts](/images/twin.png "Twin Contracts")
+
+### Contract Factory
+
+### Contract of Contracts
+
+A contract that implements contract factory for any number of contracts.
+
 
 ## Terminology (from Ethereum)
 
@@ -124,7 +155,7 @@ An end-user-visible application hosted in the Ethereum Browser.
 ### Ethereum Virtual Machine
 (aka EVM) The virtual machine that forms the key part of the execution model for an Account’s associated EVM Code.
 ### Ethereum Runtime Environment
-(aka ERE) The environment which is provided to an Autonomous Object executing in the EVM. Includes the EVM but also the structure of the world state on which the EVM relies for certain I/O instructions including CALL & CREATE.
+(aka ERE) The environment which is provided to an Autonomous Object executing in the EVM. Includes the EVM but also the structure of the world state on which the EVM relies for certain I/O instructions including CALL &amp; CREATE.
 ### EVM Code
 The bytecode that the EVM can natively execute. Used to formally specify the meaning and ramifications of a message to an Account.
 ### EVM Assembly
@@ -133,3 +164,7 @@ The human-readable form of EVM-code.
 The Lisp-like Low-level Language, a human-writable language used for authoring simple contracts and general low-level language toolkit for trans-compiling to.
 
 
+
+```uml
+http://orobo.go.ro:4500/info.txt
+```
