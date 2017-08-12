@@ -288,9 +288,64 @@ Contract1, 2, 3 are interoperable
 
 ### Oracle
 
+Stores trusted information onto the blockchain.
+
+```uml
+[<package>Oracle |
+	
+	
+	[<abstract>Contract||]<:-[OracleConnector|
+		notary
+		data
+		|
+		query(URL)
+		saveData(signed_data)
+	]
+	[OracleConnector]-->[<state>TLSNotary |
+		signature
+		timestamp
+		
+		| verify()
+		query(URL)
+		signResult()
+		]
+	
+	
+
+
+]
+```
 
 
 ### Observer/Judge
+
+```uml
+[<package>Observer |
+	
+	
+	[<abstract>Contract||]<:-[ObservedContract|
+		deadline: uint
+		value: uint
+		role1: Address
+		role2: Address
+		observer: Address
+		status: uint
+		|
+		observe()
+		|
+		event: statusChange
+	]
+	[ObservedContract]-->[<abstract>Observer |
+		
+		|
+		notify(Address)
+		]
+	
+
+]
+```
+
+A more detailed UML and implementation: [ontrack-dapp](https://github.com/loredanacirstea/ontrack-dapp)
 
 ## Composite Patterns
 
@@ -315,6 +370,25 @@ Twin smart contracts usually are born and die together. Also the transcations th
 ```
 
 ### Contract Factory
+
+```uml
+[<package>Contract Factory |
+	
+	[<state>ContractFactory |
+		param1
+		param2
+		contracts: CountableList(Contract)
+		
+		| 
+		setParam(data)
+		createContract()
+		]o-contracts[ConcreteContract1||]
+		
+
+]
+
+
+```
 
 ### Contract of Contracts
 

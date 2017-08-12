@@ -103,9 +103,13 @@ Contract1, 2, 3 are interoperable
 
 ### Oracle
 
-
+![Oracle](/images/oracle.png "Oracle")
 
 ### Observer/Judge
+
+![Observer](/images/observer.png "Observer")
+
+A more detailed UML and implementation: [ontrack-dapp](https://github.com/loredanacirstea/ontrack-dapp)
 
 ## Composite Patterns
 
@@ -116,6 +120,8 @@ Twin smart contracts usually are born and die together. Also the transcations th
 ![Twin Contracts](/images/twin.png "Twin Contracts")
 
 ### Contract Factory
+
+![Contract Factory](/images/factory.png "Contract Factory")
 
 ### Contract of Contracts
 

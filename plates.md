@@ -23,5 +23,15 @@
 ![ERC20](/images/erc20.png "ERC20")
 
 
+![Oracle](/images/oracle.png "Oracle")
+
+
+![Observer](/images/observer.png "Observer")
+
 
 ![Twin Contracts](/images/twin.png "Twin Contracts")
+
+
+
+
+![Contract Factory](/images/factory.png "Contract Factory")
