@@ -1,8 +1,12 @@
 # Plates
 
-![Merkel Tree](/images/merkel_tree.png "Merkel Tree")
+![Merkle Tree](/images/merkle_tree.png "Merkle Tree")
 
-![Merkel Trie](/images/merkel_trie.png "Merkel Trie")
+![Merkle Tree](/images/merkle_tree_inst.png "Merkle Tree")
+
+![Merkle Trie](/images/merkle_trie.png "Merkle Trie")
+
+![Merkle Trie](/images/merkle_trie_inst.png "Merkle Trie")
 
 ![Block](/images/block.png "Block")
 

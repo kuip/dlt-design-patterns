@@ -36,20 +36,41 @@ All method calls can be inspected to determine caller address.
 
 ### Merkel Tree
 
+#### Structure
 ```uml
 [<package>Merkel Tree |
-	[node 1.1.1 | hash]->[node 1.1| hash]
-	[node 1.1.2| hash]->[node 1.1]
-	[node 1.2.1| hash]->[node 1.2| hash]
-	[node 1.2.2| hash]->[node 1.2]
-	[node 1.2]->[node 1| hash]
+	[Node |
+		signature
+		children
+		|
+		hash(string)
+		toString()
+	]children o-[Node]
+	[Node]o-[DataBlock]
+]
+
+```
+
+#### Instance
+
+```uml
+[<package>Merkel Tree |
+	[<instance>datablock 1]->[<instance>node 1.1.1]
+	[<instance>datablock 2]->[<instance>node 1.1.2]
+	[<instance>datablock 3]->[<instance>node 1.2.1]
+	[<instance>datablock 4]->[<instance>node 1.2.2]
+	[<instance>node 1.1.1 | signature]->[<instance>node 1.1| signature]
+	[<instance>node 1.1.2| signature]->[node 1.1]
+	[<instance>node 1.2.1| signature]->[<instance>node 1.2| signature]
+	[<instance>node 1.2.2| signature]->[node 1.2]
+	[node 1.2]->[<instance>node 1| signature]
 	[node 1.1]->[node 1]
 
 ]
 
 ```
 
-Where node[1.1].hash = hash(concatenate(node[1.1.1].hash,node[1.1.2].hash))
+Where node[1.1].signature = hash(concatenate(node[1.1.1].toString(),node[1.1.2].toString())))
 etc.
 
 #### Applications
@@ -58,22 +79,40 @@ etc.
 
 ### Merkel Trie / Blockchain
 
+#### Structure
+```uml
+[<package>Merkel Trie |
+	[Node |
+		signature
+		block
+		parent
+		|
+		hash(string)
+		toString()
+	]parent o-[Node]
+	[Node]blocko-[DataBlock]
+]
+
+```
+
+#### Instance
+
 ```uml
 
 [<package>Merkel Trie |
-	[...]->[root n | hash]
-	[block n | hash]->[root n]
-	[root n]->[root n+1 | hash]
-	[block n+1 | hash]->[root n+1]
-	[root n+1]->[root n+2 | hash]
-	[block n+2 | hash]->[root n+2]
+	[...]->[<instance>root n | signature]
+	[<instance>block n | signature]->[root n]
+	[root n]->[<instance>root n+1 | signature]
+	[<instance>block n+1 | signature]->[root n+1]
+	[root n+1]->[<instance>root n+2 | signature]
+	[<instance>block n+2 | signature]->[root n+2]
 	[root n+2]->[....]
 
 ]
 
 ```
 
-Where root[i+1].hash = hash(concatenate(root[i].hash,block[i].hash))
+Where root[i+1].signature = hash(concatenate(root[i].toString(),block[i].toString()))
 etc.
 
 #### Applications

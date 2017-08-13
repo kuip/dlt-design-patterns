@@ -34,23 +34,34 @@ All method calls can be inspected to determine caller address.
 
 ## Data Patterns
 
-### Merkel Tree
+### Merkle Tree
 
-![Merkel Tree](/images/merkel_tree.png "Merkel Tree")
+#### Structure
 
+![Merkle Tree](/images/merkle_tree.png "Merkle Tree")
 
-Where node[1.1].hash = hash(concatenate(node[1.1.1].hash,node[1.1.2].hash))
+#### Instance
+
+![Merkle Tree](/images/merkle_tree_inst.png "Merkle Tree")
+
+Where node[1.1].signature = hash(concatenate(node[1.1.1].toString(),node[1.1.2].toString())))
 etc.
 
 #### Applications
 + Git
 + Modern File Systems
 
-### Merkel Trie / Blockchain
+### Merkle Trie / Blockchain
 
-![Merkel Trie](/images/merkel_trie.png "Merkel Trie")
+#### Structure
 
-Where root[i+1].hash = hash(concatenate(root[i].hash,block[i].hash))
+![Merkle Trie](/images/merkle_trie.png "Merkle Trie")
+
+#### Instance
+
+![Merkle Trie](/images/merkle_trie_inst.png "Merkle Trie")
+
+Where root[i+1].signature = hash(concatenate(root[i].toString(),block[i].toString()))
 etc.
 
 #### Applications
