@@ -180,3 +180,7 @@ The human-readable form of EVM-code.
 ### LLL
 The Lisp-like Low-level Language, a human-writable language used for authoring simple contracts and general low-level language toolkit for trans-compiling to.
 
+
+## Thanks
+Diagrams drawn using [Nomnoml](http://nomnoml.com/) and [JS Sequence Diagrams](https://bramp.github.io/js-sequence-diagrams/).
+

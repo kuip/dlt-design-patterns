@@ -34,11 +34,11 @@ All method calls can be inspected to determine caller address.
 
 ## Data Patterns
 
-### Merkel Tree
+### Merkle Tree
 
 #### Structure
 ```uml
-[<package>Merkel Tree |
+[<package>Merkle Tree |
 	[Node |
 		signature
 		children
@@ -54,7 +54,7 @@ All method calls can be inspected to determine caller address.
 #### Instance
 
 ```uml
-[<package>Merkel Tree |
+[<package>Merkle Tree |
 	[<instance>datablock 1]->[<instance>node 1.1.1]
 	[<instance>datablock 2]->[<instance>node 1.1.2]
 	[<instance>datablock 3]->[<instance>node 1.2.1]
@@ -77,11 +77,11 @@ etc.
 + Git
 + Modern File Systems
 
-### Merkel Trie / Blockchain
+### Merkle Trie / Blockchain
 
 #### Structure
 ```uml
-[<package>Merkel Trie |
+[<package>Merkle Trie |
 	[Node |
 		signature
 		block
@@ -99,7 +99,7 @@ etc.
 
 ```uml
 
-[<package>Merkel Trie |
+[<package>Merkle Trie |
 	[...]->[<instance>root n | signature]
 	[<instance>block n | signature]->[root n]
 	[root n]->[<instance>root n+1 | signature]
@@ -475,7 +475,8 @@ The human-readable form of EVM-code.
 ### LLL
 The Lisp-like Low-level Language, a human-writable language used for authoring simple contracts and general low-level language toolkit for trans-compiling to.
 
-
+## Thanks
+Diagrams drawn using [Nomnoml](http://nomnoml.com/) and [JS Sequence Diagrams](https://bramp.github.io/js-sequence-diagrams/).
 
 ```uml
 http://orobo.go.ro:4500/info.txt
