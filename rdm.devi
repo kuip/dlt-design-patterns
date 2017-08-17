@@ -435,6 +435,48 @@ Twin smart contracts usually are born and die together. Also the transcations th
 
 A contract that implements contract factory for any number of contracts.
 
+#### Structure
+
+```uml
+[<package>Contract of Contracts |
+	
+	[<abstract>Contract ||]<:-[ContractFactoryContract]
+	[ContractFactoryContract |
+		params
+		param2
+		contracts: CountableList(Contract)
+		
+		| 
+		setParam(data)
+		createContract()
+		]o-contracts[ConcreteContract||]
+]
+
+
+```
+
+
+#### Usage
+
+```sequence
+
+
+ContractFactoryContract -> ConcreteContract1: create contract
+ContractFactoryContract -> ConcreteContract2: create contract
+
+ContractFactoryContract -> Blockchain: create transaction
+
+ConcreteContract1 -> Blockchain: create transaction
+ConcreteContract2 -> Blockchain: create transaction
+
+ContractFactoryContract -> ConcreteContract1: kill
+Note left of ConcreteContract1: END
+ContractFactoryContract -> ConcreteContract2: kill
+Note left of ConcreteContract2: END
+
+
+```
+
 
 
 ## Thanks

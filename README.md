@@ -114,6 +114,15 @@ Twin smart contracts usually are born and die together. Also the transcations th
 
 A contract that implements contract factory for any number of contracts.
 
+#### Structure
+
+![Contract of Contracts](/images/ccontracts.png "Contract of Contracts")
+
+
+#### Usage
+
+![Contract of Contracts](/images/ccontracts_seq.png "Contract of Contracts")
+
 
 ## Thanks
 Diagrams drawn using [Nomnoml](http://nomnoml.com/) and [JS Sequence Diagrams](https://bramp.github.io/js-sequence-diagrams/).

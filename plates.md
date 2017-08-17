@@ -23,7 +23,6 @@
 ![Mortal Contract](/images/mortal.png "Mortal Contract")
 
 
-
 ![ERC20](/images/erc20.png "ERC20")
 
 
@@ -39,6 +38,10 @@
 ![Twin Contracts](/images/twin.png "Twin Contracts")
 
 
-
-
 ![Contract Factory](/images/factory.png "Contract Factory")
+
+
+![Contract of Contracts](/images/ccontracts.png "Contract of Contracts")
+
+
+![Contract of Contracts](/images/ccontracts_seq.png "Contract of Contracts")
