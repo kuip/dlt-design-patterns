@@ -33,6 +33,9 @@
 ![Observer](/images/observer.png "Observer")
 
 
+![Observer](/images/observer_seq.png "Observer")
+
+
 ![Twin Contracts](/images/twin.png "Twin Contracts")
 
 
